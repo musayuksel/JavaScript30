@@ -23,20 +23,14 @@ const handleKeyDown = (event) => {
   playKeyAnimation(keyElement);
 };
 
-const removeTransition = (element) => {
-  element.addEventListener(TRANSITION_END_ANIMATION_EVENT, (event) => {
-    if (event.propertyName === TRANSITION_EVENT_PROPERTY) {
-      element.classList.remove(PLAYING_ANIMATION_CLASS_NAME);
-    }
-  });
-};
-
 const clearAnimationsAfterPlay = () => {
-  document.querySelectorAll(ANIMATION_CLASS_NAME).forEach((element) => {
-    element.addEventListener(TRANSITION_END_ANIMATION_EVENT, (ev) =>
-      removeTransition(element)
-    );
-  });
+  document
+    .querySelector('.keys')
+    .addEventListener(TRANSITION_END_ANIMATION_EVENT, (event) => {
+      if (event.propertyName === TRANSITION_EVENT_PROPERTY) {
+        event.target.classList.remove(PLAYING_ANIMATION_CLASS_NAME);
+      }
+    });
 };
 
 const onStart = () => {
