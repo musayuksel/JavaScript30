@@ -1,18 +1,25 @@
+const SECOND_HAND_SIZE = 1;
+const MIN_HAND_SIZE = 0.75;
+const HOUR_HAND_SIZE = 0.5;
+const updateRotation = (hand, degrees, scale) => {
+  hand.style.transform = `rotate(${degrees}deg)  scaleX(${scale})`;
+};
+
 const runClock = (secondHand, minuteHand, hourHand) => {
   const currentTime = new Date();
 
-  const secondDeg = currentTime.getSeconds() * 6 + 90;
-  secondHand.style.transform = `rotate(${secondDeg}deg) scaleY(0.5)`;
+  let secondDeg = currentTime.getSeconds() * 6 + 90;
+  updateRotation(secondHand, secondDeg, SECOND_HAND_SIZE);
 
   const minuteDeg = currentTime.getMinutes() * 6 + 90;
-  minuteHand.style.transform = `rotate(${minuteDeg}deg)  scaleX(0.75)`;
+  updateRotation(minuteHand, minuteDeg, MIN_HAND_SIZE);
 
   const hourDeg = (currentTime.getHours() % 12) * 30 + 90;
-  hourHand.style.transform = `rotate(${hourDeg}deg) scaleX(0.5)`;
-  console.log({ hourDeg, minuteDeg, secondDeg });
+  updateRotation(hourHand, hourDeg, HOUR_HAND_SIZE);
 };
 
 const secondHand = document.querySelector('.second-hand');
 const minuteHand = document.querySelector('.min-hand');
 const hourHand = document.querySelector('.hour-hand');
+
 setInterval(() => runClock(secondHand, minuteHand, hourHand), 1000);
