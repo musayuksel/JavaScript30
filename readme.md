@@ -29,3 +29,7 @@ Grab the course at [https://JavaScript30.com](https://JavaScript30.com)
 ```js
 document.documentElement.style.setProperty('--blur', '10px');
 ```
+
+## Day-6
+
+Don't use `innerHTML`, use [replaceChildren() ](https://developer.mozilla.org/en-US/docs/Web/API/Element/replaceChildren)
