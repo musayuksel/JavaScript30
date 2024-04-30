@@ -1,47 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Console Tricks!</title>
-  <link rel="icon" href="https://fav.farm/🔥" />
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Console Tricks!</title>
+    <link rel="icon" href="https://fav.farm/🔥" />
+  </head>
+  <body>
+    <p onClick="makeGreen()">×BREAK×DOWN×</p>
+    <ul id="test"></ul>
 
-  <p onClick="makeGreen()">×BREAK×DOWN×</p>
+    <script>
+      const dogs = [
+        { name: 'Snickers', age: 2 },
+        { name: 'hugo', age: 8 },
+      ];
 
-  <script>
-    const dogs = [{ name: 'Snickers', age: 2 }, { name: 'hugo', age: 8 }];
+      function makeGreen() {
+        const p = document.querySelector('p');
+        p.style.color = '#BADA55';
+        p.style.fontSize = '50px';
+      }
 
-    function makeGreen() {
-      const p = document.querySelector('p');
-      p.style.color = '#BADA55';
-      p.style.fontSize = '50px';
-    }
+      // Regular
+      console.log('Regular clg');
 
-    // Regular
+      // Interpolated
+      console.log(`Hello ${dogs[0].name}!!!`);
 
-    // Interpolated
+      // Styled
+      console.log('%c percent c will apply style ', 'font-size: 50px');
 
-    // Styled
+      // warning!
+      console.warn('will console as WARNING');
 
-    // warning!
+      // Error :|
+      console.error('will console as ERROR');
 
-    // Error :|
+      // Info
+      console.info('will console as INFO');
 
-    // Info
+      // Testing
+      console.assert(
+        document.querySelector('p').innerText === 'Not break down',
+        'ASSERTION WRONG!!!'
+      );
 
-    // Testing
+      // clearing
+      console.clear();
 
-    // clearing
+      // Viewing DOM Elements
+      console.dir(document.querySelector('p'));
 
-    // Viewing DOM Elements
+      // Grouping together
+      dogs.forEach((dog) => {
+        console.group(`Group for: ${dog.name}`);
 
-    // Grouping together
+        console.log('Some info');
+        console.log(`Age is :${dog.age}`);
 
-    // counting
+        console.groupEnd(`Group for: ${dog.name}`);
+        // OR
+        console.groupCollapsed(`Group for: ${dog.name}`);
 
-    // timing
+        console.log('Some info');
+        console.log(`Age is :${dog.age}`);
 
-  </script>
-</body>
+        console.groupEnd(`Group for: ${dog.name}`);
+      });
+
+      // counting
+      console.count('text1');
+      console.count('text1');
+      console.count('text1');
+      console.count('text3');
+      console.count('text2');
+      console.count('text1');
+      console.count('text2');
+
+      // timing
+      console.time('Total time:');
+
+      const container = document.getElementById('test');
+      const fragment = document.createDocumentFragment();
+      const browsers = ['Firefox', 'Chrome', 'Opera', 'Safari'];
+      browsers.forEach((browser) => {
+        const li = document.createElement('li');
+        li.textContent = browser;
+        fragment.appendChild(li);
+        // container.appendChild(li);
+      });
+      container.appendChild(fragment);
+      console.timeEnd('Total time:');
+    </script>
+  </body>
 </html>
