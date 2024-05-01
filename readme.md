@@ -56,3 +56,11 @@ The canvas coordinate system like this:
 - `stroke()`: Draws the shape by stroking its outline.
 - `fill()`: Draws a solid shape by filling the path's content area.
 - `moveTo(x, y)`: Moves the pen to the coordinates specified by x and y.
+
+## Day-11
+
+### Basic Events
+
+- `play`: Playback has begun.
+- `pause`: Playback has been paused.
+- `timeupdate`: The time indicated by the currentTime attribute has been updated.
