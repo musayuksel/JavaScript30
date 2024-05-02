@@ -75,3 +75,90 @@ Array.prototype.isEqual = function (array) {
   //this => refers the Array
 };
 ```
+
+## Day-12
+
+### Scroll Event Optimization: Debounce vs. Throttle
+
+When handling scroll events, it's important to optimize performance by reducing the frequency of event handler execution. Two common techniques for achieving this are `debounce` and `throttle`.
+
+#### Debounce
+
+Delays the execution of a function until a **certain amount of time has passed since the last time it was triggered**. This ensures the function is called only once after a period of inactivity.
+
+Here's a simple implementation of a `debounce` function:
+
+```javascript
+function debounce(func, waitingTime) {
+  let timeout;
+
+  return function () {
+    const context = this;
+    const args = arguments;
+
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(context, args), waitingTime);
+  };
+}
+
+const handleScroll = () => {
+  // Your scroll handling logic goes here
+  console.log('Scrolled!');
+};
+
+const debouncedScroll = debounce(handleScroll, 100); // Debounce after 100ms of inactivity
+```
+
+OR more advance one like this
+
+```js
+function debounce(targetFunction, wait = 20, immediate = true) {
+  let timeout;
+
+  return function () {
+    const context = this;
+    const functionArgs = arguments;
+
+    const delayedExecution = function () {
+      timeout = null;
+      if (!immediate) targetFunction.apply(context, functionArgs);
+    };
+
+    const isReadForCall = immediate && !timeout;
+    clearTimeout(timeout);
+
+    timeout = setTimeout(delayedExecution, wait);
+    if (isReadForCall) targetFunction.apply(context, functionArgs);
+  };
+}
+```
+
+#### Throttle
+
+While debounce is generally preferred for scroll events, throttle can be useful in certain situations, such as:
+
+- **Infinite Scrolling:** Here, you might want to constantly check the scroll position to trigger content `fetching` before the user reaches the bottom. Throttle ensures regular checks at defined intervals.
+
+```js
+function throttle(func, timeFrame) {
+  let lastCallTime = 0;
+
+  return function () {
+    const now = Date.now();
+
+    if (now - lastCallTime >= timeFrame) {
+      func.apply(this, arguments);
+      lastCallTime = now;
+    }
+  };
+}
+
+function checkScrollPositionForFetching() {
+  // Your logic to check scroll position and trigger fetching
+  console.log('Checking scroll position...');
+}
+
+const throttledScroll = throttle(checkScrollPositionForFetching, 200); // Check every 200ms
+
+window.addEventListener('scroll', throttledScroll);
+```
