@@ -64,3 +64,14 @@ The canvas coordinate system like this:
 - `play`: Playback has begun.
 - `pause`: Playback has been paused.
 - `timeupdate`: The time indicated by the currentTime attribute has been updated.
+
+## Day-12
+
+Adding function into `prototype`:
+
+```js
+Array.prototype.isEqual = function (array) {
+  //...
+  //this => refers the Array
+};
+```
