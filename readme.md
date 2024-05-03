@@ -162,3 +162,41 @@ const throttledScroll = throttle(checkScrollPositionForFetching, 200); // Check 
 
 window.addEventListener('scroll', throttledScroll);
 ```
+
+### Intersection Observer API
+
+[The Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) provides a way to asynchronously observe changes in the intersection of a target element with an ancestor element or with a top-level document's viewport.
+
+```js
+const ENTRY_THRESHOLD = 0.75;
+const EXIT_THRESHOLD = 0.1;
+
+const options = {
+  threshold: [ENTRY_THRESHOLD, EXIT_THRESHOLD],
+  //threshold :1.0 means that when 100% of the target is visible within the element
+  root: document.querySelector('#scrollArea'),
+  // The element that is used as the viewport for checking visibility of the target. Must be the ancestor of the target.
+  rootMargin: '0px',
+  // Margin around the root.
+};
+const callback = (entries) => {
+  entries.forEach((entry) => {
+    // target element:
+    //   entry.boundingClientRect
+    //   entry.intersectionRatio
+    //   entry.intersectionRect
+    //   entry.isIntersecting
+    //   entry.rootBounds
+    //   entry.target
+    //   entry.time
+    if (entry.intersectionRatio >= ENTRY_THRESHOLD) {
+      entry.target.classList.add('active');
+    } else if (entry.intersectionRatio <= EXIT_THRESHOLD) {
+      entry.target.classList.remove('active');
+    }
+  });
+};
+const observer = new IntersectionObserver(callback, options);
+
+sliderImages.forEach((image) => observer.observe(image));
+```
