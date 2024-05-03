@@ -200,3 +200,28 @@ const observer = new IntersectionObserver(callback, options);
 
 sliderImages.forEach((image) => observer.observe(image));
 ```
+
+## Day-13
+
+[structuredClone()](https://developer.mozilla.org/en-US/docs/Web/API/structuredClone)
+The global `structuredClone()` method creates a _deep clone_ of a given value using the structured clone algorithm.
+
+```js
+const person = {
+  name: 'Wes Bos',
+  age: 80,
+  address: {
+    country: 'UK',
+    city: 'Manchester',
+  },
+};
+
+const person2 = structuredClone(person);
+person.address.city = 'Liverpool';
+console.log(person.address.city, '<-->', person2.address.city); //Liverpool <--> Manchester
+
+const objectWithFun = { myFun: () => console.log('first') };
+structuredClone(objectWithFun); //ERROR
+```
+
+**Supported [types](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Structured_clone_algorithm#supported_types) for deep copy.**
