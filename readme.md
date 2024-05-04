@@ -225,3 +225,27 @@ structuredClone(objectWithFun); //ERROR
 ```
 
 **Supported [types](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Structured_clone_algorithm#supported_types) for deep copy.**
+
+## Day -15
+
+### Event delegation
+
+Event delegation is when a parent element automatically **adds event listeners to its children** elements. The event listener will fire anytime an event is triggered on the child element, due to event “[bubbling](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Examples#example_5_event_propagation)” (event propagation).
+
+```js
+<ul>
+  <li>
+    <input type="text" id="inputId" />
+    <label for="inputId">some label</label>
+  </li>
+</ul>;
+
+ul.addEventListener('click', (e) => {
+  if (e.target.matches('input')) {
+    console.log('this will run only for input click');
+  }
+});
+```
+
+if we add and event listener to ul, it will pass it to it's children too.
+Look at the [matches()](https://developer.mozilla.org/en-US/docs/Web/API/Element/matches) method!!!
