@@ -249,3 +249,18 @@ ul.addEventListener('click', (e) => {
 
 if we add and event listener to ul, it will pass it to it's children too.
 Look at the [matches()](https://developer.mozilla.org/en-US/docs/Web/API/Element/matches) method!!!
+
+## Day-22
+
+### Element: getBoundingClientRect() method
+
+The [Element.getBoundingClientRect()](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect) method returns a DOMRect object providing information about the **_size_** of an element and its **_position_** relative to the viewport.
+
+```js
+const {
+  left, //also x
+  top, //also y
+  height,
+  width,
+} = mouseEvent.target.getBoundingClientRect();
+```
