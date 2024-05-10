@@ -264,3 +264,9 @@ const {
   width,
 } = mouseEvent.target.getBoundingClientRect();
 ```
+
+## Day-23
+
+### SpeechSynthesisUtterance
+
+The [SpeechSynthesisUtterance](https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesisUtterance) interface of the Web Speech API. It contains the content the speech service should read and information about how to read it (e.g. language, pitch and volume.)
