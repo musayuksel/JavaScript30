@@ -270,3 +270,31 @@ const {
 ### SpeechSynthesisUtterance
 
 The [SpeechSynthesisUtterance](https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesisUtterance) interface of the Web Speech API. It contains the content the speech service should read and information about how to read it (e.g. language, pitch and volume.)
+
+## Day-25
+
+### Event bubbling & capturing
+
+Event bubbling and capturing are two ways of event propagation in the HTML DOM API, when an event occurs in an element inside another element, and both elements have registered a handle for that event.
+
+The event propagation mode determines in which order the elements receive the event.
+
+With **bubbling**, the event is first captured and handled by the _innermost_ element and then propagated to outer elements.
+
+With **capturing**, the event is first captured by the _outermost_ element and propagated to the inner elements.
+
+```js
+<div>
+  <ul>
+    <li></li>
+  </ul>
+</div>
+```
+
+In the structure above, assume that a `click` event occurred in the `li` element.
+
+**capturing:** `div` **first** (click event handlers in the div will fire first), then `ul`, the target element, `li`.
+
+**bubbling:** the opposite will happen: the event will be handled by the `li`, then `ul`, and `div` element.
+
+More info in the [stackOverFlow.](https://stackoverflow.com/questions/4616694/what-is-event-bubbling-and-capturing)
